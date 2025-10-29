@@ -4,8 +4,7 @@ from src.end_to_end_ml_pipeline import logger
 import json
 import pickle
 import joblib
-from typing import Iterable, Any, Union
-from types import NoneType
+from typing import Any, Union
 from ensure import ensure_annotations
 from box import ConfigBox
 from box.exceptions import BoxValueError
@@ -57,7 +56,7 @@ def create_directories(path_to_directories: list, verbose= True):
             logger.info(f"Directory created/verified at: {path}")
     
 
-@ensure_annotations
+
 def save_json(path: str, data: dict) -> None:
     """Save a dictionary to a JSON file.
 
@@ -73,7 +72,7 @@ def save_json(path: str, data: dict) -> None:
     logger.info(f"JSON file saved at: {path}")
 
 
-@ensure_annotations
+
 def load_json(path: str) -> ConfigBox:
     """Load a JSON file and return its content.
 
@@ -89,8 +88,8 @@ def load_json(path: str) -> ConfigBox:
     return ConfigBox(data)
 
 
-@ensure_annotations
-def save_bin(data: Any, path: Path) -> None:
+
+def save_bin(data: object, path: Union[Path, str]) -> None:
     """Serialize any Python object to disk using joblib.
 
     Common use:
@@ -104,8 +103,8 @@ def save_bin(data: Any, path: Path) -> None:
     logger.info(f"Binary file (joblib) saved at: {path}")
 
 
-@ensure_annotations
-def load_bin(path: Path) -> Any:
+
+def load_bin(path: Union[Path, str]) -> Any:
     """Load an object that was saved with joblib.dump().
 
     Args:
@@ -119,7 +118,7 @@ def load_bin(path: Path) -> Any:
     return obj
 
 
-@ensure_annotations
+
 def save_pickle(data: Any, path: Path) -> None:
     """Serialize any Python object to disk using pickle.
 
@@ -136,7 +135,6 @@ def save_pickle(data: Any, path: Path) -> None:
     logger.info(f"Pickle file saved at: {path}")
 
 
-@ensure_annotations
 def load_pickle(path: Path) -> Any:
     """Load an object that was saved with pickle.dump().
 

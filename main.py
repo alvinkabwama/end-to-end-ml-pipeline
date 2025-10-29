@@ -2,6 +2,7 @@ from src.end_to_end_ml_pipeline import logger
 from src.end_to_end_ml_pipeline.pipeline.data_ingestion_pipeline import DataIngestionPipeline
 from src.end_to_end_ml_pipeline.pipeline.data_validation_pipeline import DataValidationPipeline
 from src.end_to_end_ml_pipeline.pipeline.data_transformation_pipeline import TransformationPipeline
+from src.end_to_end_ml_pipeline.pipeline.model_trainer_pipeline import ModelTrainerPipeline
 
 
 
@@ -34,6 +35,17 @@ try:
     logger.info(f">>>>>> Stage {STAGE_NAME} started <<<<<<")
     data_transformation_pipeline = TransformationPipeline()
     data_transformation_pipeline.initiate_data_transformation()
+    logger.info(f">>>>>> Stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+    logger.exception(e)
+    raise e 
+
+STAGE_NAME = "Model Trainer Stage"
+try:
+    logger.info(f">>>>>> Stage {STAGE_NAME} started <<<<<<")
+    model_trainer_pipeline = ModelTrainerPipeline()
+    model_trainer_pipeline.initiate_model_trainer()
+
     logger.info(f">>>>>> Stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
 except Exception as e:
     logger.exception(e)
